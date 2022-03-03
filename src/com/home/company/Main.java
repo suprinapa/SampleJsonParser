@@ -3,9 +3,9 @@ package com.home.company;
 import java.util.*;
 public class Main {
    public static void main(String[] args) {
-        ArrayList<SalesMan> mySalesManlist  =  ReadJsonToList();
-        PrintTheList(mySalesManlist);
-       ArrayList<SalesMan> londonCity = mySalesManlist.SpecificCity(mySalesManlist);// confused about what parameter to pass and why we cant call Specific city method
+       ArrayList<SalesMan> mySalesManlist  =  ReadJsonToList();
+       PrintTheList(mySalesManlist);
+       ArrayList<SalesMan> londonCity = SpecificCity(mySalesManlist);// confused about what parameter to pass and why we cant call Specific city method
        for (SalesMan specificCity:londonCity){
            System.out.println(specificCity.city);
        }
@@ -19,7 +19,7 @@ public static ArrayList<SalesMan>SpecificCity(ArrayList<SalesMan> allSalesMan){
        SalesMan city = allSalesMan.get(i);
        if(city.city =="London"){
           London.add(city);
-          }
+       }
     }
     return London;
 }
