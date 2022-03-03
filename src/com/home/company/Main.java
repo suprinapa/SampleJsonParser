@@ -5,11 +5,6 @@ public class Main {
    public static void main(String[] args) {
        ArrayList<SalesMan> mySalesManlist  =  ReadJsonToList();
        PrintTheList(mySalesManlist);
-       ArrayList<SalesMan> londonCity = SpecificCity(mySalesManlist);// confused about what parameter to pass and why we cant call Specific city method
-       for (SalesMan specificCity:londonCity){
-           System.out.println(specificCity.city);
-       }
-
    }
         // write function call to question 2
         // write function call to question 3 and all other
@@ -29,6 +24,10 @@ public static ArrayList<SalesMan>SpecificCity(ArrayList<SalesMan> allSalesMan){
         {
             SalesMan currentSalesman = allSalesManArg.get(i);
             System.out.println(" The sales man " + currentSalesman.name + " lives in " + currentSalesman.city + "and is " + currentSalesman.age + " years old");
+        }
+        ArrayList<SalesMan> londonCity = SpecificCity(allSalesManArg);
+        for (SalesMan specificCity:londonCity){
+            System.out.println(specificCity.city);
         }
     }
 
