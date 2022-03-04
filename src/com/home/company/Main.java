@@ -5,9 +5,30 @@ public class Main {
    public static void main(String[] args) {
        ArrayList<SalesMan> mySalesManlist  =  ReadJsonToList();
        PrintTheList(mySalesManlist);
+       ArrayList<SalesMan> londonCity = SpecificCity(mySalesManlist);
+       PrintTheList(londonCity);
+       TotalSalesmaninLondon(mySalesManlist);
+       ArrayList<String> name = LondonNames(mySalesManlist);
+       PrintTheList(name);
+
    }
-        // write function call to question 2
-        // write function call to question 3 and all other
+    //write function to return only names of all salesman who lives in london
+   public static ArrayList<String> LondonNames (ArrayList<SalesMan> allSalesMan){
+       ArrayList<String> London = new ArrayList<>();
+       for (int i = 0; i < allSalesMan.size(); i++) {
+           SalesMan city = allSalesMan.get(i);
+           if(city.city =="London"){
+               for (int j = 0; j < allSalesMan.size(); j++) {
+                   SalesMan name = allSalesMan.get(j);
+                          London.add(name.name);
+                   }
+
+           }
+
+       }
+       return London;
+   }
+
 public static ArrayList<SalesMan>SpecificCity(ArrayList<SalesMan> allSalesMan){
      ArrayList<SalesMan> London = new ArrayList<>();
     for (int i = 0; i < allSalesMan.size(); i++) {
@@ -19,19 +40,24 @@ public static ArrayList<SalesMan>SpecificCity(ArrayList<SalesMan> allSalesMan){
     return London;
 }
 
-    private static  void PrintTheList(ArrayList<SalesMan> allSalesManArg){
+public static void TotalSalesmaninLondon(ArrayList<SalesMan> allSalesMan){
+        int total = 0;
+        for (int a = 0; a < allSalesMan.size(); a++) {
+            SalesMan thisSalesman = allSalesMan.get(a);
+            if (thisSalesman.city == "London") {
+                total++;
+            }
+        }
+        System.out.println(" The sales man in London " + total);
+}
+
+    public static void PrintTheList(ArrayList<SalesMan> allSalesManArg){
         for (int i=0; i<allSalesManArg.size(); i++)
         {
             SalesMan currentSalesman = allSalesManArg.get(i);
-            System.out.println(" The sales man " + currentSalesman.name + " lives in " + currentSalesman.city + "and is " + currentSalesman.age + " years old");
-        }
-        ArrayList<SalesMan> londonCity = SpecificCity(allSalesManArg);
-        for (SalesMan specificCity:londonCity){
-            System.out.println(specificCity.city);
+            System.out.println(" The sales man " + currentSalesman.name + " lives in " + currentSalesman.city + " and is " + currentSalesman.age + " years old");
         }
     }
-
-    //For now lets hard code it please add all from  json files
 
     private static ArrayList<SalesMan> ReadJsonToList() {
        ArrayList<SalesMan> allSalesMan = new ArrayList<SalesMan>() ;
@@ -92,6 +118,4 @@ public static ArrayList<SalesMan>SpecificCity(ArrayList<SalesMan> allSalesMan){
 
         return allSalesMan;
     }
-
-
 }
