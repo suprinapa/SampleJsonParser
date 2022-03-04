@@ -7,27 +7,27 @@ public class Main {
        PrintTheList(mySalesManlist);
        ArrayList<SalesMan> londonCity = SpecificCity(mySalesManlist);
        PrintTheList(londonCity);
-       TotalSalesmaninLondon(mySalesManlist);
-       ArrayList<String> name = LondonNames(mySalesManlist);
-       PrintTheList(name);
+       int x = TotalSalesmaninLondon(mySalesManlist);
+       Print(x);
+
 
    }
-    //write function to return only names of all salesman who lives in london
-   public static ArrayList<String> LondonNames (ArrayList<SalesMan> allSalesMan){
-       ArrayList<String> London = new ArrayList<>();
+/*    //write function to return only names of all salesman who lives in london
+   public static ArrayList<SalesMan> LondonNames (ArrayList<SalesMan> allSalesMan){
+       ArrayList<SalesMan> London = new ArrayList<>();
        for (int i = 0; i < allSalesMan.size(); i++) {
            SalesMan city = allSalesMan.get(i);
            if(city.city =="London"){
                for (int j = 0; j < allSalesMan.size(); j++) {
                    SalesMan name = allSalesMan.get(j);
-                          London.add(name.name);
+                   London.add(name);
                    }
 
+              }
            }
-
        }
        return London;
-   }
+   }*/
 
 public static ArrayList<SalesMan>SpecificCity(ArrayList<SalesMan> allSalesMan){
      ArrayList<SalesMan> London = new ArrayList<>();
@@ -40,7 +40,7 @@ public static ArrayList<SalesMan>SpecificCity(ArrayList<SalesMan> allSalesMan){
     return London;
 }
 
-public static void TotalSalesmaninLondon(ArrayList<SalesMan> allSalesMan){
+public static int TotalSalesmaninLondon(ArrayList<SalesMan> allSalesMan){
         int total = 0;
         for (int a = 0; a < allSalesMan.size(); a++) {
             SalesMan thisSalesman = allSalesMan.get(a);
@@ -48,7 +48,7 @@ public static void TotalSalesmaninLondon(ArrayList<SalesMan> allSalesMan){
                 total++;
             }
         }
-        System.out.println(" The sales man in London " + total);
+        return total;
 }
 
     public static void PrintTheList(ArrayList<SalesMan> allSalesManArg){
@@ -57,6 +57,10 @@ public static void TotalSalesmaninLondon(ArrayList<SalesMan> allSalesMan){
             SalesMan currentSalesman = allSalesManArg.get(i);
             System.out.println(" The sales man " + currentSalesman.name + " lives in " + currentSalesman.city + " and is " + currentSalesman.age + " years old");
         }
+    }
+
+    public  static void Print(int allSalesManArg){
+        System.out.println("Total people living in london =" +allSalesManArg);
     }
 
     private static ArrayList<SalesMan> ReadJsonToList() {
