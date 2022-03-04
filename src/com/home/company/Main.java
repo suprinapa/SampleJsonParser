@@ -1,45 +1,57 @@
 package com.home.company;
-
 import java.util.*;
 public class Main {
-   public static void main(String[] args) {
+public static void main(String[] args){
        ArrayList<SalesMan> mySalesManlist  =  ReadJsonToList();
-       PrintTheList(mySalesManlist);
-       ArrayList<SalesMan> londonCity = SpecificCity(mySalesManlist);
-       PrintTheList(londonCity);
-       int x = TotalSalesmaninLondon(mySalesManlist);
-       Print(x);
-       ArrayList<String> y = LondonNames(mySalesManlist);
-       Printstr(y);
+       String city = "London";
+       ArrayList<SalesMan> CityYouWant = SpecificCity(mySalesManlist,city);
+       System.out.println("People living in the given city");
+       PrintTheList(CityYouWant);
+       int x = TotalSalesmaninCity(mySalesManlist, city);
+       Print(x,city);
+       ArrayList<String> y = PersonLivingInCity(mySalesManlist, city);
+       Printstr(y, city);
    }
-    //write function to return only names of all salesman who lives in london
-   public static ArrayList<String> LondonNames (ArrayList<SalesMan> allSalesMan){
-       ArrayList<String> London = new ArrayList<>();
-       for (int i = 0; i < allSalesMan.size(); i++) {
-           SalesMan city = allSalesMan.get(i);
-           if(city.City =="London"){
-                  London.add(city.Name);
-                  }
+/*   public static SalesMan GetYoungestSalesMan(ArrayList<SalesMan> allSalesMan){
+       for (int s = 0; s < allSalesMan.size(); s++) {
+           SalesMan salesMan = allSalesMan.get(s);
+               int age = salesMan.Age;
+               SalesMan max =allSalesMan.get(0);
+          if (!(allSalesMan.get(s)  > max))   {
+              max = allSalesMan.get(s);
 
+           }
+       }
+       return max;
+   }*/
+
+    //write function to return only names of all salesman who lives in london
+   public static ArrayList<String> PersonLivingInCity (ArrayList<SalesMan> allSalesMan, String city){
+       ArrayList<String> salesManName = new ArrayList<>();
+       for (int i = 0; i < allSalesMan.size(); i++) {
+           SalesMan salesMan = allSalesMan.get(i);
+           if(salesMan.City == city){
+               salesManName.add(salesMan.Name);
+                  }
               }
-           return London;
+       return salesManName;
    }
-public static ArrayList<SalesMan>SpecificCity(ArrayList<SalesMan> allSalesMan){
-     ArrayList<SalesMan> London = new ArrayList<>();
+public static ArrayList<SalesMan>SpecificCity(ArrayList<SalesMan> allSalesMan, String city){
+ ArrayList<SalesMan> CityYouWant = new ArrayList<>();
     for (int i = 0; i < allSalesMan.size(); i++) {
-       SalesMan city = allSalesMan.get(i);
-       if(city.City =="London"){
-          London.add(city);
+       SalesMan cityName = allSalesMan.get(i);
+       if(cityName.City == city){
+          CityYouWant.add(cityName);
        }
     }
-    return London;
+    return CityYouWant;
 }
 
-public static int TotalSalesmaninLondon(ArrayList<SalesMan> allSalesMan){
+public static int TotalSalesmaninCity(ArrayList<SalesMan> allSalesMan, String city){
         int total = 0;
         for (int a = 0; a < allSalesMan.size(); a++) {
             SalesMan thisSalesman = allSalesMan.get(a);
-            if (thisSalesman.City == "London") {
+            if (thisSalesman.City == city) {
                 total++;
             }
         }
@@ -54,11 +66,11 @@ public static int TotalSalesmaninLondon(ArrayList<SalesMan> allSalesMan){
         }
     }
 
-    public  static void Print(int allSalesManArg){
-        System.out.println("Total people living in london =" +allSalesManArg);
+    public  static void Print(int allSalesManArg, String city){
+        System.out.println("Total people living in " +city+ " =" +allSalesManArg);
     }
-    public  static void Printstr (ArrayList<String> allSalesManArg){
-        System.out.println("people living in london with name =" +allSalesManArg);
+    public  static void Printstr (ArrayList<String> allSalesManArg, String city){
+        System.out.println("people living in city " +city+ " with name =" +allSalesManArg);
     }
 
     private static SalesMan CreateSalesman(String name, String city, int age) {
