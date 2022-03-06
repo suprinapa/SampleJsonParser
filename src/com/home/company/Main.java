@@ -11,19 +11,49 @@ public static void main(String[] args){
        Print(x,city);
        ArrayList<String> y = PersonLivingInCity(mySalesManlist, city);
        Printstr(y, city);
+        double z = AvgAge(mySalesManlist, city);
+    PrintAvg(z,city);
+
    }
-/*   public static SalesMan GetYoungestSalesMan(ArrayList<SalesMan> allSalesMan){
+ /*public static SalesMan GetYoungestSalesMan(ArrayList<SalesMan> allSalesMan){
        for (int s = 0; s < allSalesMan.size(); s++) {
            SalesMan salesMan = allSalesMan.get(s);
-               int age = salesMan.Age;
+           int age = salesMan.Age;
+           Collections.sort(allSalesMan.get(age));
+           SalesMan max = allSalesMan.get([0]);
+           if (age <= max){
+
+          *//* for (int j = allSalesMan.size() - 1; j > s; j--) {
+               if (allSalesMan.get(s) > allSalesMan.get(j)) {
+                   int tmp = allSalesMan.get(s);
+                   allSalesMan.get(s) = allSalesMan.get(s);
+                   allSalesMan.get(j) = tmp;
+
+               }
+           }*//*
+         *//*
                SalesMan max =allSalesMan.get(0);
-          if (!(allSalesMan.get(s)  > max))   {
-              max = allSalesMan.get(s);
+          if ((allSalesMan.get(s) > max))   {
+              max = allSalesMan.get(s);*//*
 
            }
        }
-       return max;
-   }*/
+       return age;
+   }
+*/
+    //write function to return average age of salesman who lives in london
+    public static double AvgAge (ArrayList<SalesMan> allSalesMan, String city) {
+        double avg = 0;
+        for (int i = 0; i < allSalesMan.size(); i++) {
+            SalesMan salesMan = allSalesMan.get(i);
+            if (salesMan.City == city) {
+                double age = salesMan.Age;
+                double total = age++;
+                avg = total/allSalesMan.size();
+            }
+        }
+        return avg;
+    }
 
     //write function to return only names of all salesman who lives in london
    public static ArrayList<String> PersonLivingInCity (ArrayList<SalesMan> allSalesMan, String city){
@@ -68,6 +98,10 @@ public static int TotalSalesmaninCity(ArrayList<SalesMan> allSalesMan, String ci
 
     public  static void Print(int allSalesManArg, String city){
         System.out.println("Total people living in " +city+ " =" +allSalesManArg);
+
+    }
+    public  static void PrintAvg(double allSalesManArg, String city) {
+        System.out.println("Avg age of people living in " + city + " =" + allSalesManArg);
     }
     public  static void Printstr (ArrayList<String> allSalesManArg, String city){
         for (int i = 0; i < allSalesManArg.size(); i++) {
