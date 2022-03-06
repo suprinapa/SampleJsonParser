@@ -70,7 +70,10 @@ public static int TotalSalesmaninCity(ArrayList<SalesMan> allSalesMan, String ci
         System.out.println("Total people living in " +city+ " =" +allSalesManArg);
     }
     public  static void Printstr (ArrayList<String> allSalesManArg, String city){
-        System.out.println("people living in city " +city+ " with name =" +allSalesManArg);
+        for (int i = 0; i < allSalesManArg.size(); i++) {
+            String salesMan = allSalesManArg.get(i);
+            System.out.println("people living in city " +city+ " with name =" +salesMan);
+        }
     }
 
     private static SalesMan CreateSalesman(String name, String city, int age) {
