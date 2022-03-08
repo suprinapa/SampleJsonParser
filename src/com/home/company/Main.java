@@ -13,7 +13,7 @@ public static void main(String[] args){
        Print(x,city);
        ArrayList<String> y = PersonLivingInCity(mySalesManlist, city);
        Printstr(y, city);
-       double z = AvgAge(mySalesManlist,city,age);
+       double z = AvgAge(mySalesManlist,city);
        PrintAvg(z,city);
 
    }
@@ -44,11 +44,11 @@ public static void main(String[] args){
    }
 */
     //write function to return average age of salesman who lives in london
-    public static double AvgAge(ArrayList<SalesMan> allSalesMan,String city, int age) {
+    public static double AvgAge(ArrayList<SalesMan> allSalesMan,String city) {
         double avg = 0;
         double total = 0;
         int totalOfCity = TotalSalesmaninCity(allSalesMan, city);
-        ArrayList<SalesMan> ages = Specific(allSalesMan,age);
+        ArrayList<SalesMan> ages = SpecificCity(allSalesMan,city);
         for (int i = 0; i < ages.size(); i++) {
             SalesMan salesMan = ages.get(i);
              total = total+ salesMan.Age++;
