@@ -9,12 +9,14 @@ public static void main(String[] args){
        PrintTheList(CityYouWant);
        ArrayList<SalesMan> AgeYouWant = Specific(mySalesManlist,age);
        PrintTheList(AgeYouWant);
-       int x = TotalSalesmaninCity(mySalesManlist, city);
+       int x = TotalSalesManInCity(mySalesManlist, city);
        Print(x,city);
        ArrayList<String> y = PersonLivingInCity(mySalesManlist, city);
-       Printstr(y, city);
+       PrintStr(y, city);
        double z = AvgAge(mySalesManlist,city);
        PrintAvg(z,city);
+       ArrayList<SalesMan> sortByAge = OrderBy(mySalesManlist);
+       PrintSort(sortByAge);
 
    }
  /*public static SalesMan GetYoungestSalesMan(ArrayList<SalesMan> allSalesMan){
@@ -43,11 +45,21 @@ public static void main(String[] args){
        return age;
    }
 */
+    // write function to return list of salesman order by their age.
+public static ArrayList<SalesMan> OrderBy(ArrayList<SalesMan>allSalesMan) {
+       Collections.sort(allSalesMan, new Comparator<SalesMan>() {
+           @Override
+           public int compare(SalesMan s1, SalesMan s2) {
+               return ((Integer)s1.Age.compareTo(s2.Age));
+           }
+       });
+    return allSalesMan;
+}
     //write function to return average age of salesman who lives in london
     public static double AvgAge(ArrayList<SalesMan> allSalesMan,String city) {
         double avg = 0;
         double total = 0;
-        int totalOfCity = TotalSalesmaninCity(allSalesMan, city);
+        int totalOfCity = TotalSalesManInCity(allSalesMan, city);
         ArrayList<SalesMan> ages = SpecificCity(allSalesMan,city);
         for (int i = 0; i < ages.size(); i++) {
             SalesMan salesMan = ages.get(i);
@@ -90,7 +102,7 @@ public static ArrayList<SalesMan>Specific(ArrayList<SalesMan> allSalesMan, int a
         return SalesManInfoYouWant;
     }
 
-public static int TotalSalesmaninCity(ArrayList<SalesMan> allSalesMan, String city){
+public static int TotalSalesManInCity(ArrayList<SalesMan> allSalesMan, String city){
         int total = 0;
         for (int a = 0; a < allSalesMan.size(); a++) {
             SalesMan thisSalesman = allSalesMan.get(a);
@@ -116,19 +128,25 @@ public static int TotalSalesmaninCity(ArrayList<SalesMan> allSalesMan, String ci
     public  static void PrintAvg(double allSalesManArg,String city) {
         System.out.println("Avg age of people living in " + city + "=" + allSalesManArg);
     }
-    public  static void Printstr (ArrayList<String> allSalesManArg, String city){
+    public  static void PrintStr (ArrayList<String> allSalesManArg, String city){
         for (int i = 0; i < allSalesManArg.size(); i++) {
             String salesMan = allSalesManArg.get(i);
             System.out.println("people living in city " +city+ " with name =" +salesMan);
         }
     }
 
+    public  static void PrintSort(ArrayList<SalesMan> allSalesManArg){
+       System.out.println("Orderby age:");
+        for (int i = 0; i < allSalesManArg.size(); i++) {
+            SalesMan salesMan = allSalesManArg.get(i);
+            System.out.print(salesMan.Age + ",");
+        }
+    }
     private static SalesMan CreateSalesman(String name, String city, int age) {
     SalesMan objSalesMan = new SalesMan();
         objSalesMan.Name = name;
         objSalesMan.City = city;
         objSalesMan.Age = age;
-
     return objSalesMan;
     }
 
