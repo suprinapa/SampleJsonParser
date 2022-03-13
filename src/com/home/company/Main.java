@@ -19,14 +19,14 @@ public static void main(String[] args){
        PrintSort(sortByAge);
        int maxMinValue = MaxAndMin(mySalesManlist);
        PrintMaxMin(maxMinValue);
-      SalesMan youngest = GetYoungestSalesman(mySalesManlist);
-      PrintYoungestSalesMan(youngest);
-      SalesMan oldest = GetOldestSalesman(mySalesManlist);
-      PrintOldestSalesMan(oldest);
-      ArrayList<String> bothCities = BothCity(mySalesManlist);
-      PrintSalesManInLondonNewYork(bothCities);
-      SalesMan secondOldest = SecondOldest(mySalesManlist, city);
-      PrintSecondOldest(secondOldest,city);
+       SalesMan youngest = GetYoungestSalesman(mySalesManlist);
+       PrintYoungestSalesMan(youngest);
+       SalesMan oldest = GetOldestSalesman(mySalesManlist);
+       PrintOldestSalesMan(oldest);
+       ArrayList<String> bothCities = BothCity(mySalesManlist);
+       PrintSalesManInLondonNewYork(bothCities);
+       SalesMan secondOldest = SecondOldest(mySalesManlist, city);
+       PrintSecondOldest(secondOldest,city);
 
    }
 
