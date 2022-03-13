@@ -17,34 +17,22 @@ public static void main(String[] args){
        PrintAvg(z,city);
        ArrayList<SalesMan> sortByAge = OrderBy(mySalesManlist);
        PrintSort(sortByAge);
+       int young = GetYoungestSalesMan(mySalesManlist);
+       PrintYoungest(young);
+
 
    }
- /*public static SalesMan GetYoungestSalesMan(ArrayList<SalesMan> allSalesMan){
-       for (int s = 0; s < allSalesMan.size(); s++) {
-           SalesMan salesMan = allSalesMan.get(s);
-           int age = salesMan.Age;
-           Collections.sort(allSalesMan.get(age));
-           SalesMan max = allSalesMan.get([0]);
-           if (age <= max){
+ public static int GetYoungestSalesMan(ArrayList<SalesMan> allSalesMan) {
+     ArrayList<SalesMan> sort = OrderBy(allSalesMan);
+     SalesMan min = null;
+     int least = 0;
+     for (int s = 0; s < allSalesMan.size(); s++) {
+         min = allSalesMan.get(0);
+         least = min.Age;
+     }
+     return least;
+ }
 
-          *//* for (int j = allSalesMan.size() - 1; j > s; j--) {
-               if (allSalesMan.get(s) > allSalesMan.get(j)) {
-                   int tmp = allSalesMan.get(s);
-                   allSalesMan.get(s) = allSalesMan.get(s);
-                   allSalesMan.get(j) = tmp;
-
-               }
-           }*//*
-         *//*
-               SalesMan max =allSalesMan.get(0);
-          if ((allSalesMan.get(s) > max))   {
-              max = allSalesMan.get(s);*//*
-
-           }
-       }
-       return age;
-   }
-*/
     // write function to return list of salesman order by their age.
 public static ArrayList<SalesMan> OrderBy(ArrayList<SalesMan>allSalesMan) {
        Collections.sort(allSalesMan, new Comparator<SalesMan>() {
@@ -141,6 +129,10 @@ public static int TotalSalesManInCity(ArrayList<SalesMan> allSalesMan, String ci
             SalesMan salesMan = allSalesManArg.get(i);
             System.out.print(salesMan.Age + ",");
         }
+    }
+
+    public static void PrintYoungest(int allSalesManArg){
+        System.out.println("\n the youngest Salesman is " +allSalesManArg);
     }
     private static SalesMan CreateSalesman(String name, String city, int age) {
     SalesMan objSalesMan = new SalesMan();
