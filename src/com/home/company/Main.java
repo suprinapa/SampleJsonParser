@@ -19,29 +19,26 @@ public static void main(String[] args){
        PrintSort(sortByAge);
        int maxMinValue = MaxAndMin(mySalesManlist);
        PrintMaxMin(maxMinValue);
-      String youngest = GetYoungestSalesman(mySalesManlist);
+      SalesMan youngest = GetYoungestSalesman(mySalesManlist);
       PrintYoungestSalesMan(youngest);
-      String oldest = GetOldestSalesman(mySalesManlist);
+      SalesMan oldest = GetOldestSalesman(mySalesManlist);
       PrintOldestSalesMan(oldest);
       ArrayList<String> bothCities = BothCity(mySalesManlist);
       PrintSalesManInLondonNewYork(bothCities);
-    String secondOldest = SecondOldest(mySalesManlist, city);
-    PrintSecondOldest(secondOldest,city);
+      SalesMan secondOldest = SecondOldest(mySalesManlist, city);
+      PrintSecondOldest(secondOldest,city);
 
    }
 
    //write a function to object(salesman) of salesman who is  second oldest in London
-    public static String SecondOldest (ArrayList<SalesMan>allSalesMan,String city) {
+    public static SalesMan SecondOldest (ArrayList<SalesMan>allSalesMan,String city) {
         OrderBy(allSalesMan);
-        String NameOfSecondYoungest = null;
         for (int i = 0; i < allSalesMan.size(); i++) {
             SalesMan SalesManCity = allSalesMan.get(i);
             if(SalesManCity.City == city) {
-                SalesMan secondYoungest = allSalesMan.get(allSalesMan.size() - 2);
-                NameOfSecondYoungest = secondYoungest.Name;
             }
         }
-        return NameOfSecondYoungest;
+        return allSalesMan.get(allSalesMan.size() - 2);
     }
 
    //write a function to find name of salesman who lives in both london and Newyork
@@ -58,28 +55,15 @@ public static void main(String[] args){
 
 
    //write function to return object(salesman) of salesman who is oldest.
-    public static String GetOldestSalesman(ArrayList<SalesMan>allSalesMan){
+    public static SalesMan GetOldestSalesman(ArrayList<SalesMan>allSalesMan){
     OrderBy(allSalesMan);
-    SalesMan oldest = null;
-    String NameOfOldest = null;
-
-        for (int i = 0; i < allSalesMan.size(); i++) {
-            oldest = allSalesMan.get(allSalesMan.size()-1);
-            NameOfOldest = oldest.Name;
-        }
-    return NameOfOldest;
+    return  allSalesMan.get(allSalesMan.size()-1);
     }
 
    //write function to return object(salesman) of salesman who is youngest.
-    public static String GetYoungestSalesman(ArrayList<SalesMan>allSalesMan) {
+    public static SalesMan GetYoungestSalesman(ArrayList<SalesMan>allSalesMan) {
         OrderBy(allSalesMan);
-        SalesMan youngest = null;
-        String NameOfYoungest = null;
-        for (int s = 0; s < allSalesMan.size(); s++) {
-            youngest = allSalesMan.get(0);
-            NameOfYoungest = youngest.Name;
-        }
-        return NameOfYoungest;
+        return allSalesMan.get(0);
     }
 
    // Write function to return difference of max age and min age of salesman who lives in london.
@@ -98,12 +82,7 @@ public static void main(String[] args){
 
     // write function to return list of salesman order by their age.
 public static ArrayList<SalesMan> OrderBy(ArrayList<SalesMan>allSalesMan) {
-       Collections.sort(allSalesMan, new Comparator<SalesMan>() {
-           @Override
-           public int compare(SalesMan s1, SalesMan s2) {
-               return ((Integer)s1.Age.compareTo(s2.Age));
-           }
-       });
+       Collections.sort(allSalesMan, new AgeComparator());
     return allSalesMan;
 }
     //write function to return average age of salesman who lives in london
@@ -114,7 +93,8 @@ public static ArrayList<SalesMan> OrderBy(ArrayList<SalesMan>allSalesMan) {
         ArrayList<SalesMan> ages = SpecificCity(allSalesMan,city);
         for (int i = 0; i < ages.size(); i++) {
             SalesMan salesMan = ages.get(i);
-             total = total+ salesMan.Age++;
+            Integer age = salesMan.Age++;
+             total = total+age;
         }
         avg = total/totalOfCity;
         return avg;
@@ -152,7 +132,6 @@ public static ArrayList<SalesMan>Specific(ArrayList<SalesMan> allSalesMan, int a
         }
         return SalesManInfoYouWant;
     }
-
 public static int TotalSalesManInCity(ArrayList<SalesMan> allSalesMan, String city){
         int total = 0;
         for (int a = 0; a < allSalesMan.size(); a++) {
@@ -186,11 +165,11 @@ public static int TotalSalesManInCity(ArrayList<SalesMan> allSalesMan, String ci
         }
     }
 
-    public static void PrintYoungestSalesMan(String allSalesManArg){
-        System.out.println("Youngest SalesMan is: "+allSalesManArg);
+    public static void PrintYoungestSalesMan(SalesMan allSalesManArg){
+        System.out.println("Youngest SalesMan is: " +allSalesManArg.Name+" and his age is " + allSalesManArg.Age );
      }
-    public static void PrintOldestSalesMan(String allSalesManArg){
-        System.out.println("Oldest SalesMan is: "+allSalesManArg);
+    public static void PrintOldestSalesMan(SalesMan allSalesManArg){
+        System.out.println("Oldest SalesMan is: "+allSalesManArg.Name+ " and age is " +allSalesManArg.Age);
     }
 
     public  static void PrintSalesManInLondonNewYork(ArrayList<String> allSalesManArg){
@@ -207,8 +186,8 @@ public static int TotalSalesManInCity(ArrayList<SalesMan> allSalesMan, String ci
     public static void PrintMaxMin(int allSalesManArg){
         System.out.println("\n the difference between max and min " +allSalesManArg);
     }
-    public  static void PrintSecondOldest(String allSalesManArg, String city){
-    System.out.println("Second Oldest in " + city + " is " +allSalesManArg);
+    public  static void PrintSecondOldest(SalesMan allSalesManArg, String city){
+    System.out.println("Second Oldest in " + city + " is " +allSalesManArg.Name);
     }
 
     private static SalesMan CreateSalesman(String name, String city, int age) {
@@ -220,7 +199,7 @@ public static int TotalSalesManInCity(ArrayList<SalesMan> allSalesMan, String ci
     }
 
     private static ArrayList<SalesMan> ReadJsonToList() {
-       ArrayList<SalesMan> allSalesMan = new ArrayList<SalesMan>() ;
+       ArrayList<SalesMan> allSalesMan = new ArrayList<>() ;
         allSalesMan.add(CreateSalesman("Jones","Boston",34));
         allSalesMan.add(CreateSalesman("Kivell","London",54));
         allSalesMan.add(CreateSalesman("Jardine","Boston",34));
