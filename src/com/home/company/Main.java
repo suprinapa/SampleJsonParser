@@ -22,15 +22,18 @@ public static void main(String[] args){
 
 
    }
+   // Write function to return difference of max age and min age of salesman who lives in london.
  public static int GetYoungestSalesMan(ArrayList<SalesMan> allSalesMan) {
      ArrayList<SalesMan> sort = OrderBy(allSalesMan);
      SalesMan min = null;
-     int least = 0;
+     SalesMan max = null;
+     int value = 0;
      for (int s = 0; s < allSalesMan.size(); s++) {
          min = allSalesMan.get(0);
-         least = min.Age;
+         max = allSalesMan.get(allSalesMan.size()-1);
+         value =  max.Age - min.Age;
      }
-     return least;
+     return value;
  }
 
     // write function to return list of salesman order by their age.
@@ -132,7 +135,7 @@ public static int TotalSalesManInCity(ArrayList<SalesMan> allSalesMan, String ci
     }
 
     public static void PrintYoungest(int allSalesManArg){
-        System.out.println("\n the youngest Salesman is " +allSalesManArg);
+        System.out.println("\n the difference between max and min " +allSalesManArg);
     }
     private static SalesMan CreateSalesman(String name, String city, int age) {
     SalesMan objSalesMan = new SalesMan();
