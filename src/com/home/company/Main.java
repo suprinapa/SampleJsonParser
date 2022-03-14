@@ -46,9 +46,12 @@ public static void main(String[] args){
     ArrayList<String> bothCity = new ArrayList<>();
         for (int i = 0; i < allSalesMan.size(); i++) {
             SalesMan salesManName = allSalesMan.get(i);
-            if(salesManName.City == "London" || salesManName.City == "NewYork" ){
-                bothCity.add(salesManName.Name);
-            }
+
+
+          /*  String c = salesManName.Name;
+            if ((Collections.frequency(allSalesMan, c)) > 1) {
+                bothCity.add(c);
+            }*/
         }
     return bothCity;
     }
@@ -209,6 +212,8 @@ public static int TotalSalesManInCity(ArrayList<SalesMan> allSalesMan, String ci
         allSalesMan.add(CreateSalesman("Howard","NewYork",22));
         allSalesMan.add(CreateSalesman("Parent","Boston",31));
         allSalesMan.add(CreateSalesman("Smith","London",40));
+        allSalesMan.add(CreateSalesman("Kivell","NewYork",54));
+        allSalesMan.add(CreateSalesman("Thompson","NewYork",32));
         return allSalesMan;
     }
 }
