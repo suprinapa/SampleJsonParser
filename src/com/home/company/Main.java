@@ -5,6 +5,15 @@ public class Main {
         ArrayList<SalesMan> mySalesManList = ReadJsonToList();
         String city = "London";
         int age = 0;
+        boolean isOldest = false;
+        if(isOldest) {
+            SalesMan oldest = GetOldestSalesman(mySalesManList);
+            PrintYoungestOrOldest(oldest, isOldest);
+        }
+        else {
+            SalesMan youngest = GetYoungestSalesman(mySalesManList);
+            PrintYoungestOrOldest(youngest, isOldest);
+        }
         ArrayList<SalesMan> CityYouWant = SpecificCity(mySalesManList, city);
         PrintTheList(CityYouWant);
         ArrayList<SalesMan> AgeYouWant = Specific(mySalesManList, age);
@@ -19,10 +28,6 @@ public class Main {
         PrintSort(sortByAge);
         int maxMinValue = MaxAndMin(mySalesManList);
         PrintMaxMin(maxMinValue);
-        SalesMan youngest = GetYoungestSalesman(mySalesManList);
-        PrintYoungestSalesMan(youngest);
-        SalesMan oldest = GetOldestSalesman(mySalesManList);
-        PrintOldestSalesMan(oldest);
         ArrayList<String> bothCities = BothCity(mySalesManList);
         PrintSalesManInLondonNewYork(bothCities);
         SalesMan secondOldest = SecondOldest(mySalesManList, city);
@@ -189,12 +194,11 @@ public static int TotalSalesManInCity(ArrayList<SalesMan> allSalesMan, String ci
         }
     }
 
-    public static void PrintYoungestSalesMan(SalesMan allSalesManArg){
-        System.out.println("Youngest SalesMan is: " +allSalesManArg.Name+" and his age is " + allSalesManArg.Age );
-
-     }
-    public static void PrintOldestSalesMan(SalesMan allSalesManArg){
-        System.out.println("Oldest SalesMan is: "+allSalesManArg.Name+ " and age is " +allSalesManArg.Age);
+    public static void PrintYoungestOrOldest(SalesMan allSalesManArg, boolean isOldest){
+        if(isOldest){
+            System.out.println("Oldest SalesMan is: " +allSalesManArg.Name+" and his age is " + allSalesManArg.Age);
+        }
+        else System.out.println("Youngest SalesMan is: " +allSalesManArg.Name+" and his age is " + allSalesManArg.Age);
     }
 
     public  static void PrintSalesManInLondonNewYork(ArrayList<String> allSalesManArg){
