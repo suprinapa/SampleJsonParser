@@ -2,32 +2,50 @@ package com.home.company;
 import java.util.*;
 public class Main {
     public static void main(String[] args) {
-        ArrayList<SalesMan> mySalesManlist = ReadJsonToList();
+        ArrayList<SalesMan> mySalesManList = ReadJsonToList();
         String city = "London";
         int age = 0;
-        ArrayList<SalesMan> CityYouWant = SpecificCity(mySalesManlist, city);
+        ArrayList<SalesMan> CityYouWant = SpecificCity(mySalesManList, city);
         PrintTheList(CityYouWant);
-        ArrayList<SalesMan> AgeYouWant = Specific(mySalesManlist, age);
+        ArrayList<SalesMan> AgeYouWant = Specific(mySalesManList, age);
         PrintTheList(AgeYouWant);
-        int x = TotalSalesManInCity(mySalesManlist, city);
+        int x = TotalSalesManInCity(mySalesManList, city);
         Print(x, city);
-        ArrayList<String> y = PersonLivingInCity(mySalesManlist, city);
+        ArrayList<String> y = PersonLivingInCity(mySalesManList, city);
         PrintStr(y, city);
-        double z = AvgAge(mySalesManlist, city);
+        double z = AvgAge(mySalesManList, city);
         PrintAvg(z, city);
-        ArrayList<SalesMan> sortByAge = OrderBy(mySalesManlist);
+        ArrayList<SalesMan> sortByAge = OrderBy(mySalesManList);
         PrintSort(sortByAge);
-        int maxMinValue = MaxAndMin(mySalesManlist);
+        int maxMinValue = MaxAndMin(mySalesManList);
         PrintMaxMin(maxMinValue);
-        SalesMan youngest = GetYoungestSalesman(mySalesManlist);
+        SalesMan youngest = GetYoungestSalesman(mySalesManList);
         PrintYoungestSalesMan(youngest);
-        SalesMan oldest = GetOldestSalesman(mySalesManlist);
+        SalesMan oldest = GetOldestSalesman(mySalesManList);
         PrintOldestSalesMan(oldest);
-        ArrayList<String> bothCities = BothCity(mySalesManlist);
+        ArrayList<String> bothCities = BothCity(mySalesManList);
         PrintSalesManInLondonNewYork(bothCities);
-        SalesMan secondOldest = SecondOldest(mySalesManlist, city);
+        SalesMan secondOldest = SecondOldest(mySalesManList, city);
         PrintSecondOldest(secondOldest, city);
+        eachAvgCity(mySalesManList,city);
+    }
 
+    public static void eachAvgCity(ArrayList<SalesMan>allSalesman ,String city) {
+        HashMap<String, Double> map = new HashMap<>();
+        ArrayList<String> DistinctCity = new ArrayList<>();
+        AvgAge(allSalesman, city);
+        for (int i = 0; i < allSalesman.size(); i++) {
+            SalesMan salesMan = allSalesman.get(i);
+            String uniqueCity = salesMan.City;
+            if (DistinctCity.contains(uniqueCity) == false) {
+                DistinctCity.add(uniqueCity);
+                for (int j = 0; j < DistinctCity.size(); j++) {
+                    map.put(uniqueCity, AvgAge(allSalesman, city));
+                }
+
+            }
+        }
+        System.out.println("all = " + map);
     }
 
     //write a function to object(salesman) of salesman who is  second oldest in London
