@@ -27,10 +27,11 @@ public class Main {
         PrintSalesManInLondonNewYork(bothCities);
         SalesMan secondOldest = SecondOldest(mySalesManList, city);
         PrintSecondOldest(secondOldest, city);
-        eachAvgCity(mySalesManList);
+        HashMap<String, Double> eachCityAverage = eachAvgCity(mySalesManList);
+        PrintEachCityAvg(eachCityAverage);
     }
 
-    public static void eachAvgCity(ArrayList<SalesMan>allSalesman) {
+    public static HashMap<String, Double> eachAvgCity(ArrayList<SalesMan>allSalesman) {
         HashMap<String, Double> map = new HashMap<>();
         ArrayList<String> DistinctCity = new ArrayList<>();
         for (int i = 0; i < allSalesman.size(); i++) {
@@ -43,7 +44,7 @@ public class Main {
                 }
             }
         }
-        System.out.println("all = " + map);
+        return map;
     }
 
     //write a function to object(salesman) of salesman who is  second oldest in London
@@ -213,6 +214,13 @@ public static int TotalSalesManInCity(ArrayList<SalesMan> allSalesMan, String ci
     public  static void PrintSecondOldest(SalesMan allSalesManArg, String city){
     System.out.println("Second Oldest in " + city + " is " +allSalesManArg.Name);
     }
+
+    public static void PrintEachCityAvg (HashMap<String, Double> allSalesManArg){
+        for (Map.Entry pairEntry : allSalesManArg.entrySet()){
+            System.out.println(pairEntry.getKey() + " : " +pairEntry.getValue());
+        }
+    }
+
 
     private static SalesMan CreateSalesman(String name, String city, int age) {
     SalesMan objSalesMan = new SalesMan();
