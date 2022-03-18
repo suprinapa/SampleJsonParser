@@ -27,22 +27,20 @@ public class Main {
         PrintSalesManInLondonNewYork(bothCities);
         SalesMan secondOldest = SecondOldest(mySalesManList, city);
         PrintSecondOldest(secondOldest, city);
-        eachAvgCity(mySalesManList,city);
+        eachAvgCity(mySalesManList);
     }
 
-    public static void eachAvgCity(ArrayList<SalesMan>allSalesman ,String city) {
+    public static void eachAvgCity(ArrayList<SalesMan>allSalesman) {
         HashMap<String, Double> map = new HashMap<>();
         ArrayList<String> DistinctCity = new ArrayList<>();
-        AvgAge(allSalesman, city);
         for (int i = 0; i < allSalesman.size(); i++) {
             SalesMan salesMan = allSalesman.get(i);
             String uniqueCity = salesMan.City;
-            if (DistinctCity.contains(uniqueCity) == false) {
+            if (!DistinctCity.contains(uniqueCity)) {
                 DistinctCity.add(uniqueCity);
                 for (int j = 0; j < DistinctCity.size(); j++) {
-                    map.put(uniqueCity, AvgAge(allSalesman, city));
+                    map.put(uniqueCity, AvgAge(allSalesman,uniqueCity));
                 }
-
             }
         }
         System.out.println("all = " + map);
@@ -192,6 +190,7 @@ public static int TotalSalesManInCity(ArrayList<SalesMan> allSalesMan, String ci
 
     public static void PrintYoungestSalesMan(SalesMan allSalesManArg){
         System.out.println("Youngest SalesMan is: " +allSalesManArg.Name+" and his age is " + allSalesManArg.Age );
+
      }
     public static void PrintOldestSalesMan(SalesMan allSalesManArg){
         System.out.println("Oldest SalesMan is: "+allSalesManArg.Name+ " and age is " +allSalesManArg.Age);
